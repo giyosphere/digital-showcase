@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens ─────────────────────────────────────────────────── */
+:root {
+  --color-bg:       #f8f8f6;
+  --color-surface:  #efefed;
+  --color-text:     #050505;
+  --color-muted:    #888888;
+  --color-accent:   #00875f;
+  --color-border:   rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --color-bg:       #050505;
+  --color-surface:  #0d0d0d;
+  --color-text:     #f0ede8;
+  --color-muted:    #777777;
+  --color-accent:   #b3ff47;
+  --color-border:   rgba(255, 255, 255, 0.07);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  /* Smooth theme transitions */
+  transition: background-color 0.3s ease, color 0.2s ease;
+}
+
+/* ── Cinematic grain overlay ──────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.25;
+  will-change: transform;
+}
+
+/* Slightly stronger grain in dark mode */
+.dark body::before { opacity: 0.4; }
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ── Masonry grid ─────────────────────────────────────────────────── */
+.work-grid {
+  columns: 1;
+  column-gap: 0.875rem;
+}
+
+@media (min-width: 480px) {
+  .work-grid { columns: 2; }
+}
+
+@media (min-width: 1024px) {
+  .work-grid { columns: 3; }
+}
+
+.work-item {
+  break-inside: avoid;
+  margin-bottom: 0.875rem;
+}
+
+/* ── Safe-area bottom padding (iOS notch) ─────────────────────────── */
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* ── Selection ────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ── Smooth theme transitions — body/html only, not every element ── */
+body, html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
