@@ -4,6 +4,9 @@ import * as pdfjsLib from 'pdfjs-dist'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react'
 
+const base = import.meta.env.BASE_URL
+const asset = (path) => path?.startsWith('http') ? path : `${base}${path.replace(/^\//, '')}`
+
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url
@@ -57,7 +60,7 @@ export function BookModal({ book, onClose }) {
 
     async function load() {
       try {
-        const pdf = await pdfjsLib.getDocument(book.src).promise
+        const pdf = await pdfjsLib.getDocument(asset(book.src)).promise
         const count = pdf.numPages
         if (cancelled) return
         setTotalPages(count)

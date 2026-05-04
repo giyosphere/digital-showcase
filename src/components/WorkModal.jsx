@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowUpRight } from 'lucide-react'
 
+const base = import.meta.env.BASE_URL
+const asset = (path) => path?.startsWith('http') ? path : `${base}${path.replace(/^\//, '')}`
+
 export function WorkModal({ work, onClose }) {
   const videoRef = useRef(null)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
@@ -107,14 +110,14 @@ export function WorkModal({ work, onClose }) {
             ) : work.type === 'mp4' ? (
               <video
                 ref={videoRef}
-                src={work.src}
+                src={asset(work.src)}
                 controls
                 playsInline
                 className="w-full h-full object-contain"
               />
             ) : (
               <img
-                src={work.src}
+                src={asset(work.src)}
                 alt={work.title}
                 className="w-full h-full object-contain"
                 loading="lazy"

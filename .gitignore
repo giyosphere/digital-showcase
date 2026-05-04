@@ -3,6 +3,7 @@ node_modules/
 
 # Media assets
 public/Videos/
+public/Graphics/
 /Videos/
 /Graphics/
 /Design Guide/

@@ -2,6 +2,9 @@ import { useRef, useState, useEffect, memo } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, BookOpen } from 'lucide-react'
 
+const base = import.meta.env.BASE_URL
+const asset = (path) => path?.startsWith('http') ? path : `${base}${path.replace(/^\//, '')}`
+
 export const WorkCard = memo(function WorkCard({ work, onClick }) {
   const videoRef = useRef(null)
   const cardRef = useRef(null)
@@ -60,7 +63,7 @@ export const WorkCard = memo(function WorkCard({ work, onClick }) {
         {/* Thumbnail / poster image — hides once video is playing */}
         {work.thumbnail && (
           <img
-            src={work.thumbnail}
+            src={asset(work.thumbnail)}
             alt={work.title}
             loading="lazy"
             onLoad={() => setLoaded(true)}
