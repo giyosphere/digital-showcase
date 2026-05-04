@@ -3,14 +3,18 @@ node_modules/
 
 # Media assets
 public/Videos/
-Videos/
-Graphics/
-Design Guide/
+/Videos/
+/Graphics/
+/Design Guide/
 
 # Environment
 .env
 .env.local
 .env.production
+
+# Large raw files
+*.tif
+*.tiff
 
 # OS
 .DS_Store
