@@ -1,5 +1,5 @@
 import { Reveal } from './Reveal'
-import { Mail, Github, Instagram, ArrowUpRight } from 'lucide-react'
+import { Mail, Github, Instagram, Linkedin, ArrowUpRight } from 'lucide-react'
 
 const links = [
   {
@@ -11,14 +11,20 @@ const links = [
   {
     icon: Instagram,
     label: 'Instagram',
-    value: '@geovisuals',
-    href: '#',
+    value: '@giyoosphere',
+    href: 'https://www.instagram.com/giyoosphere/',
+  },
+  {
+    icon: Linkedin,
+    label: 'LinkedIn',
+    value: 'Geomar Dalaoyan',
+    href: 'https://www.linkedin.com/in/geomar-dalaoyan-6a0b19357',
   },
   {
     icon: Github,
     label: 'GitHub',
-    value: 'github.com/geovisuals',
-    href: '#',
+    value: 'github.com/giyosphere',
+    href: 'https://github.com/giyosphere',
   },
 ]
 
